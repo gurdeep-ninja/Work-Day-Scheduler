@@ -80,13 +80,31 @@ function formatColour(divText, hour){
 $(".row").on("click",'.saveBtn',function(){
 
     // Find out task's save button was clicked (stored as data attribute 'data-hour')
-    let scheduleTask = $(event.target).parent().parent().attr("data-hour")
+    let task = $(event.target).parent().parent().attr("data-hour")
 
     // get the value of the textarea in the same row as the save button (.saveBtn)
 
     //let scheduleTaskText = $(event.target).parent().parent().children().eq(1).children(0).val()
-    let scheduleTaskText = $(event.target).parent().prev().find("textarea").val()
+    let taskText = $(event.target).parent().prev().find("textarea").val()
 
-    console.log(`task: ${scheduleTask} text: ${scheduleTaskText}`)
+    console.log(`task: ${task} text: ${taskText}`)
 
+    let taskObject = {
+        hour: task,
+        content: taskText
+    }
+    saveTask(taskObject)
 })
+
+// A function to save the schedule task in localStorage
+function saveTask(taskObject) {
+
+    // We are going to push an array of objects to our localStorage
+    let tasks = []
+
+    // Push task to tasks array
+    tasks.push(taskObject)
+
+    localStorage.setItem("tasks", JSON.stringify(taskObject))
+
+}
