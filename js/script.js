@@ -1,7 +1,16 @@
 
 let scheduleEl = $(".container")
 
-// Loop through each item in the schedule array & create the html
+// Select the HTML element #currentDay
+let elCurrentDay = $('#currentDay')
+// Get the current date and format it like "Thursday, Jan 5th ""
+var currentDay = moment().format("dddd, MMM Do");
+
+// change the text of elCurrentDay to the value of currentDay
+elCurrentDay.text(currentDay);
+
+
+// Loop through each item in the schedule array & create the html content
 schedule.forEach(function(element){
     //console.log(element.hour)
 
@@ -11,11 +20,14 @@ schedule.forEach(function(element){
     // column for time
     let divTime = $("<div>").addClass("col-2").addClass("my-auto")
 
-    // append ampm to the element.hour so it appears like "12pm etc"
+    // append schedule task time using key hour12 (i.e 4pm,5pm etc)
     divTime.text(element.hour12)
 
     // column for text area
-    let divText= $("<div>").addClass("col-8").addClass("my-auto")    
+    let divText= $("<div>").addClass("col-8").addClass("my-auto")
+    
+    // append textarea form input
+    divText.append(`<textarea class="form-control" rows="3">${element.hour12}</textarea>`)  
 
     // column for save button
     let divSave= $("<div>").addClass("col-2").addClass("my-auto")
@@ -27,7 +39,6 @@ schedule.forEach(function(element){
     divSave.append(saveButton)
 
     // append div* elements to the row
-
     row.append(divTime)
     row.append(divText)
     row.append(divSave)
