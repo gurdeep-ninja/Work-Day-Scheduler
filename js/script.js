@@ -87,7 +87,7 @@ $(".row").on("click",'.saveBtn',function(){
     //let scheduleTaskText = $(event.target).parent().parent().children().eq(1).children(0).val()
     let taskText = $(event.target).parent().prev().find("textarea").val()
 
-    console.log(`task: ${task} text: ${taskText}`)
+    //console.log(`task: ${task} text: ${taskText}`)
 
     let taskToSave = {
         hour: task,
@@ -100,33 +100,55 @@ $(".row").on("click",'.saveBtn',function(){
 function saveTask(taskToSave) {
 
     // We are going to push an array of objects to our localStorage
-    let tasks = []
+    let storedTasks = []
 
     // Push task to tasks array
     //tasks.push(taskToSave)
 
     //localStorage.setItem("tasks", JSON.stringify(tasks))
 
-    console.log(taskToSave)
+    //console.log(taskToSave)
     
     if(localStorage.getItem("tasks") !== null){
         
         storedTasks = JSON.parse(localStorage.getItem('tasks'))
-        
+        //console.log(storedTasks)
         //console.log(tasks)
 
         // loop through each of the objects in the array tasks from localStorage
 
-        storedTasks.forEach(function(storedTask){
+        // storedTasks.forEach(function(storedTask){
 
-            //
-            if (storedTask.hour === taskToSave.hour){
-            
-            console.log("Task in storage is the same")
-            } else {
-                console.log("Task in storage is not the same")
-            }
-        })
+        //     //
+        //     if (storedTask.hour === taskToSave.hour){
+
+        //        // console.log(storedTask.content)
+
+        //         //console.log(taskToSave.content)       
+                
+        //         storedTask.content = taskToSave.content
+        //         //console.log(storedTask.content)
+        //     //console.log("Task in storage is the same")
+        //     } else {
+        //         storedTasks.push(taskToSave)
+        //     }
+        // })
+        //console.log(storedTasks)
+        // let existingTask = storedTasks.find(function(storedTask){
+        //     return storedTask.hour == taskToSave.hour
+        // })
+
+        let existingTask = storedTasks.findIndex((task => task.hour === taskToSave.hour))
+
+        if(existingTask != -1){
+            console.log("found")
+        }
+
+
+        //console.log(existingTask)
+
+        // localStorage.setItem('tasks', JSON.stringify(storedTasks))
+        //console.log(storedTasks)
 
     }
 }
