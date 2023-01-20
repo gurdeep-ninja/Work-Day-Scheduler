@@ -13,7 +13,7 @@ elCurrentDay.text(currentDay.format("dddd, MMM Do"))
 
 
 // Loop through each item in the schedule array & create the html content
-schedule.forEach(function(element){
+schedule.forEach(function (element) {
 
     // get the hour from the schedule task
     var hour = element.hour
@@ -28,17 +28,17 @@ schedule.forEach(function(element){
     divTime.text(element.hour12)
 
     // column for text area
-    let divText= $("<div>").addClass("col-8").addClass("my-auto")
-    
+    let divText = $("<div>").addClass("col-8").addClass("my-auto")
+
     // append textarea form input
-    divText.append(`<textarea class="form-control" rows="3">${element.hour12}</textarea>`)  
+    divText.append(`<textarea class="form-control" rows="3">${element.hour12}</textarea>`)
 
     // column for save button
-    let divSave= $("<div>").addClass("col-2").addClass("my-auto")
+    let divSave = $("<div>").addClass("col-2").addClass("my-auto")
 
     // Create save button
     let saveButton = '<button class="saveBtn">Save</button>'
-    
+
     // Append the saveButton to divSave
     divSave.append(saveButton)
 
@@ -49,13 +49,13 @@ schedule.forEach(function(element){
     row.append(divTime)
     row.append(divText)
     row.append(divSave)
-    
+
     // Append the row to scheduleEl (".container")
     scheduleEl.append(row)
 })
 
 // A function to format the textArea element according to the current hour
-function formatColour(divText, hour){
+function formatColour(divText, hour) {
 
     //console.log(divText)
     // Get the current Hour
@@ -77,7 +77,7 @@ function formatColour(divText, hour){
 
 
 // Add an event listener to the save buttons (.saveBtn)
-$(".row").on("click",'.saveBtn',function(){
+$(".row").on("click", '.saveBtn', function () {
 
     // Find out task's save button was clicked (stored as data attribute 'data-hour')
     let task = parseInt($(event.target).parent().parent().attr("data-hour"))
@@ -108,47 +108,44 @@ function saveTask(taskToSave) {
     //localStorage.setItem("tasks", JSON.stringify(tasks))
 
     //console.log(taskToSave)
-    
-    if(localStorage.getItem("tasks") !== null){
-        
+
+    // If the local storage is not empty, then we want to update existing tasks
+    if (localStorage.getItem("tasks") !== null) {
+
+        /// get the current tasks from localStorage and store in storedTasks variable
         storedTasks = JSON.parse(localStorage.getItem('tasks'))
+
         //console.log(storedTasks)
         //console.log(tasks)
 
-        // loop through each of the objects in the array tasks from localStorage
-
-        // storedTasks.forEach(function(storedTask){
-
-        //     //
-        //     if (storedTask.hour === taskToSave.hour){
-
-        //        // console.log(storedTask.content)
-
-        //         //console.log(taskToSave.content)       
-                
-        //         storedTask.content = taskToSave.content
-        //         //console.log(storedTask.content)
-        //     //console.log("Task in storage is the same")
-        //     } else {
-        //         storedTasks.push(taskToSave)
-        //     }
-        // })
-        //console.log(storedTasks)
-        // let existingTask = storedTasks.find(function(storedTask){
-        //     return storedTask.hour == taskToSave.hour
-        // })
-
+        // using findIndex array method to check if the task already has content
+        // this is to ensure we are not adding extra objects that will have the same 
+        // hour key
         let existingTask = storedTasks.findIndex((task => task.hour === taskToSave.hour))
 
-        if(existingTask != -1){
-            console.log("found")
+        // If the task already has content, update it with the new content
+        if (existingTask != -1) {
+
+            storedTasks[existingTask].content = taskToSave.content
+
+            console.log(storedTasks)
+
+            // If the task is new then push it to the storedTasks array[]
+        } else {
+            storedTasks.push(taskToSave)
         }
 
-
         //console.log(existingTask)
-
-        // localStorage.setItem('tasks', JSON.stringify(storedTasks))
         //console.log(storedTasks)
 
+        // If there is no localStorage item 'tasks', then we will create it
+    } else {
+
+        storedTasks.push(taskToSave)
+        localStorage.setItem('tasks', JSON.stringify(storedTasks))
+
     }
+
+    // save the schedule tasks in localStorage item 'tasks'
+    localStorage.setItem('tasks', JSON.stringify(storedTasks))
 }
