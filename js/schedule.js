@@ -45,4 +45,29 @@ let schedule = [
         hour12:"5pm",
         content: ""
     },
+    {
+        hour: 18,
+        hour12:"6pm",
+        content: ""
+    },
+    {
+        hour: 19,
+        hour12:"7pm",
+        content: ""
+    },
+    {
+        hour: 20,
+        hour12:"8pm",
+        content: ""
+    },
+    {
+        hour: 21,
+        hour12:"9pm",
+        content: ""
+    },
+    {
+        hour: 22,
+        hour12:"10pm",
+        content: ""
+    },    
 ]
