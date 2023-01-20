@@ -80,7 +80,7 @@ function formatColour(divText, hour){
 $(".row").on("click",'.saveBtn',function(){
 
     // Find out task's save button was clicked (stored as data attribute 'data-hour')
-    let task = $(event.target).parent().parent().attr("data-hour")
+    let task = parseInt($(event.target).parent().parent().attr("data-hour"))
 
     // get the value of the textarea in the same row as the save button (.saveBtn)
 
@@ -89,22 +89,44 @@ $(".row").on("click",'.saveBtn',function(){
 
     console.log(`task: ${task} text: ${taskText}`)
 
-    let taskObject = {
+    let taskToSave = {
         hour: task,
         content: taskText
     }
-    saveTask(taskObject)
+    saveTask(taskToSave)
 })
 
 // A function to save the schedule task in localStorage
-function saveTask(taskObject) {
+function saveTask(taskToSave) {
 
     // We are going to push an array of objects to our localStorage
     let tasks = []
 
     // Push task to tasks array
-    tasks.push(taskObject)
+    //tasks.push(taskToSave)
 
-    localStorage.setItem("tasks", JSON.stringify(taskObject))
+    //localStorage.setItem("tasks", JSON.stringify(tasks))
 
+    console.log(taskToSave)
+    
+    if(localStorage.getItem("tasks") !== null){
+        
+        storedTasks = JSON.parse(localStorage.getItem('tasks'))
+        
+        //console.log(tasks)
+
+        // loop through each of the objects in the array tasks from localStorage
+
+        storedTasks.forEach(function(storedTask){
+
+            //
+            if (storedTask.hour === taskToSave.hour){
+            
+            console.log("Task in storage is the same")
+            } else {
+                console.log("Task in storage is not the same")
+            }
+        })
+
+    }
 }
