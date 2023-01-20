@@ -1,0 +1,39 @@
+// An array of objects storing the schedule tasks
+let schedule = [
+    {
+        hour:9,
+        content:""
+    },
+    {
+        hour:10,
+        content:""
+    },
+    {
+        hour:11,
+        content:""
+    },
+    {
+        hour:12,
+        content:""
+    },
+    {
+        hour:13,
+        content:""
+    },
+    {
+        hour:14,
+        content:""
+    }, 
+    {
+        hour:15,
+        content:""
+    },  
+    {
+        hour:16,
+        content:""
+    },  
+    {
+        hour:17,
+        content:""
+    },                           
+]
