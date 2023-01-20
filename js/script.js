@@ -11,7 +11,7 @@ var currentDay = moment()
 // change the text of elCurrentDay to the value of currentDay and format it like "Thursday, Jan 5th ""
 elCurrentDay.text(currentDay.format("dddd, MMM Do"))
 
-
+// schedule is an array of scheduled task objects in schedule.js
 // Loop through each item in the schedule array & create the html content
 schedule.forEach(function (element) {
 
@@ -31,7 +31,19 @@ schedule.forEach(function (element) {
     let divText = $("<div>").addClass("col-8").addClass("my-auto")
 
     // append textarea form input
-    divText.append(`<textarea class="form-control" rows="3">${element.hour12}</textarea>`)
+    let storedTasks = JSON.parse(localStorage.getItem('tasks'))
+    let existingTask = storedTasks.findIndex((task => task.hour === element.hour))
+    let textAreaContent
+
+    // If the task already has content, populate the textArea with existing content
+    if (existingTask != -1) {
+        textAreaContent = (`<textarea class="form-control" rows="3">${storedTasks[existingTask].content}</textarea>`)
+    } else {
+        textAreaContent = (`<textarea class="form-control" rows="3"></textarea>`)
+    }
+
+
+    divText.append(textAreaContent)
 
     // column for save button
     let divSave = $("<div>").addClass("col-2").addClass("my-auto")
@@ -128,7 +140,7 @@ function saveTask(taskToSave) {
 
             storedTasks[existingTask].content = taskToSave.content
 
-            console.log(storedTasks)
+            //console.log(storedTasks)
 
             // If the task is new then push it to the storedTasks array[]
         } else {
@@ -142,7 +154,6 @@ function saveTask(taskToSave) {
     } else {
 
         storedTasks.push(taskToSave)
-        localStorage.setItem('tasks', JSON.stringify(storedTasks))
 
     }
 
