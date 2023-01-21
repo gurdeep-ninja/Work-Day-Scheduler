@@ -31,7 +31,6 @@ schedule.forEach(function (element) {
     // column for text area
     let divText = $("<div>").addClass("col-8").addClass("my-auto")
 
-
     // access any tasks stored in localStorage item 'tasks'
     let storedTasks = JSON.parse(localStorage.getItem('tasks'))
 
@@ -54,13 +53,14 @@ schedule.forEach(function (element) {
     }
 
 
+    // append the textarea to the divText column
     divText.append(textAreaContent)
 
     // column for save button
-    let divSave = $("<div>").addClass("col-2").addClass("my-auto")
+    let divSave = $("<div>").addClass("col-2")
 
     // Create save button
-    let saveButton = '<button class="saveBtn">Save</button>'
+    let saveButton = '<button class="saveBtn"><i class="fa-solid fa-floppy-disk"></i></button>'
 
     // Append the saveButton to divSave
     divSave.append(saveButton)
