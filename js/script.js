@@ -1,22 +1,23 @@
 
 // Select the HTML element .container
+// this element is populated with bootstrap rows for each task
 let scheduleEl = $(".container")
 
 // Select the HTML element #currentDay
 let elCurrentDay = $('#currentDay')
 
 // Get & store the current date using moment.js
-var currentDay = moment()
+let currentDay = moment()
 
 // change the text of elCurrentDay to the value of currentDay and format it like "Thursday, Jan 5th ""
 elCurrentDay.text(currentDay.format("dddd, MMM Do"))
 
-// schedule is an array of scheduled task objects in schedule.js
+// schedule[] is an array of scheduled task objects in schedule.js
 // Loop through each item in the schedule array & create the html content
 schedule.forEach(function (element) {
 
     // get the hour from the schedule task
-    var hour = element.hour
+    let hour = element.hour
 
     //Create a html row using bootstrap class & ass data attribute called hour
     let row = $(`<div class="row" data-hour=${hour}>`)
@@ -30,16 +31,26 @@ schedule.forEach(function (element) {
     // column for text area
     let divText = $("<div>").addClass("col-8").addClass("my-auto")
 
-    // append textarea form input
-    let storedTasks = JSON.parse(localStorage.getItem('tasks'))
-    let existingTask = storedTasks.findIndex((task => task.hour === element.hour))
-    let textAreaContent
 
-    // If the task already has content, populate the textArea with existing content
+    // access any tasks stored in localStorage item 'tasks'
+    let storedTasks = JSON.parse(localStorage.getItem('tasks'))
+
+    // Find out if an existing task details exist against the task being populated in the schedule
+    let existingTask = storedTasks.findIndex((task => task.hour === element.hour))
+
+    // create a variable to store a textarea element html
+    let textAreaContent = $("<textarea>").addClass("form-control").attr("rows", "3")
+
+    // append textarea form input
+    // If the task already has content in localStorage, populate the textAreaContent with existing content
     if (existingTask != -1) {
-        textAreaContent = (`<textarea class="form-control" rows="3">${storedTasks[existingTask].content}</textarea>`)
+        //textAreaContent = (`<textarea class="form-control" rows="3">${}</textarea>`)
+        textAreaContent.text(storedTasks[existingTask].content)
+
     } else {
-        textAreaContent = (`<textarea class="form-control" rows="3"></textarea>`)
+        // If the task does not already exist in localStorage, populate textAreaContent with empty value
+        //textAreaContent = (`<textarea class="form-control" rows="3"></textarea>`)
+        textAreaContent.text("")
     }
 
 
@@ -71,7 +82,7 @@ function formatColour(divText, hour) {
 
     //console.log(divText)
     // Get the current Hour
-    var thisHour = parseInt(currentDay.format("H"))
+    let thisHour = parseInt(currentDay.format("H"))
 
     //console.log(`Hour: ${hour} thisHour: ${thisHour}`)
 
@@ -108,20 +119,15 @@ $(".row").on("click", '.saveBtn', function () {
     saveTask(taskToSave)
 })
 
-// A function to save the schedule task in localStorage
+/* A function to save the schedule task in localStorage.
+ This also checks if an existing task exists and will overwrite it if needed */
 function saveTask(taskToSave) {
 
     // We are going to push an array of objects to our localStorage
+    // create empty array
     let storedTasks = []
 
-    // Push task to tasks array
-    //tasks.push(taskToSave)
-
-    //localStorage.setItem("tasks", JSON.stringify(tasks))
-
-    //console.log(taskToSave)
-
-    // If the local storage is not empty, then we want to update existing tasks
+    // If the local storage is not empty, then we want to update the existing task being saved
     if (localStorage.getItem("tasks") !== null) {
 
         /// get the current tasks from localStorage and store in storedTasks variable
@@ -130,9 +136,9 @@ function saveTask(taskToSave) {
         //console.log(storedTasks)
         //console.log(tasks)
 
-        // using findIndex array method to check if the task already has content
-        // this is to ensure we are not adding extra objects that will have the same 
-        // hour key
+        /* Using findIndex array method to check if the task already has content
+         this is to ensure we are not adding extra objects that will have the same 
+         hour key */
         let existingTask = storedTasks.findIndex((task => task.hour === taskToSave.hour))
 
         // If the task already has content, update it with the new content
@@ -150,7 +156,8 @@ function saveTask(taskToSave) {
         //console.log(existingTask)
         //console.log(storedTasks)
 
-        // If there is no localStorage item 'tasks', then we will create it
+        /* If there is no localStorage item 'tasks', then we will create it by 
+        pushing our first task to be saved to the storedTasks[] array */
     } else {
 
         storedTasks.push(taskToSave)
