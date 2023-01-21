@@ -58,7 +58,7 @@ $(document).ready(function(){
             //textAreaContent = (`<textarea class="form-control" rows="3"></textarea>`)
             textAreaContent.text("")
         }
-
+        textAreaContent.attr("placeholder","Please enter your event / task here")
         // append the textarea to the divText column
         divText.append(textAreaContent)
 
