@@ -176,8 +176,5 @@ function saveTask(taskToSave) {
     localStorage.setItem('tasks', JSON.stringify(storedTasks))
 
     // display save message
-    elSaveMessage.css({visibility:"visible", opacity: 0.0}).animate({opacity: 1.0},1000,
-        function(){
-            elSaveMessage.css({visibility:"hidden"})
-        });
+    elSaveMessage.css({visibility:"visible", opacity: 0.0}).animate({opacity: 1.0},1000);
 }
