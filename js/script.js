@@ -1,10 +1,12 @@
 
 // Select the HTML element .container
 // this element is populated with bootstrap rows for each task
-let scheduleEl = $(".container")
+let elSchedule = $("#schedule")
 
 // Select the HTML element #currentDay
 let elCurrentDay = $('#currentDay')
+
+let elSaveMessage = $("#save-message p")
 
 // Get & store the current date using moment.js
 let currentDay = moment()
@@ -76,8 +78,8 @@ schedule.forEach(function (element) {
     row.append(divText)
     row.append(divSave)
 
-    // Append the row to scheduleEl (".container")
-    scheduleEl.append(row)
+    // Append the row to elSchedule (".container")
+    elSchedule.append(row)
 })
 
 // A function to format the textArea element according to the current hour
@@ -172,4 +174,10 @@ function saveTask(taskToSave) {
 
     // save the schedule tasks in localStorage item 'tasks'
     localStorage.setItem('tasks', JSON.stringify(storedTasks))
+
+    // display save message
+    elSaveMessage.css({visibility:"visible", opacity: 0.0}).animate({opacity: 1.0},1000,
+        function(){
+            elSaveMessage.css({visibility:"hidden"})
+        });
 }

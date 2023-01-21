@@ -16,6 +16,7 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  margin-bottom:10px
 }
 
 .row {
@@ -36,7 +37,7 @@ textarea {
 .saveBtn:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
-  color:
+  color:black
 }
 
 .task-expired{
@@ -51,14 +52,25 @@ textarea {
 }
 
 .time {
-  border-top:1px solid black;
+  border-top:1px dashed black;
   text-align: right;
   padding: 10px;
   text-transform: uppercase;
 }
 
 .container,.form-control {
-  font-weight:bold;
   color:black
   
+}
+
+#save-message{
+  text-align: center;
+  height:30px;
+}
+#save-message i {
+  color:green;
+}
+
+#save-message p {
+  visibility: hidden;
 }
