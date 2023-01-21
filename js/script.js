@@ -20,16 +20,16 @@ schedule.forEach(function (element) {
     let hour = element.hour
 
     //Create a html row using bootstrap class & ass data attribute called hour
-    let row = $(`<div class="row" data-hour=${hour}>`)
+    let row = $(`<div class="row g-0" data-hour=${hour}>`)
 
     // column for time
-    let divTime = $("<div>").addClass("col-2").addClass("my-auto")
+    let divTime = $("<div>").addClass("col-2 time")
 
     // append schedule task time using key hour12 (i.e 4pm,5pm etc)
     divTime.text(element.hour12)
 
     // column for text area
-    let divText = $("<div>").addClass("col-8").addClass("my-auto")
+    let divText = $("<div>").addClass("col-8 p-0")
 
     // access any tasks stored in localStorage item 'tasks'
     let storedTasks = JSON.parse(localStorage.getItem('tasks'))
@@ -57,7 +57,7 @@ schedule.forEach(function (element) {
     divText.append(textAreaContent)
 
     // column for save button
-    let divSave = $("<div>").addClass("col-2")
+    let divSave = $("<div>").addClass("col-2 p-0")
 
     // Create save button
     let saveButton = '<button class="saveBtn"><i class="fa-solid fa-floppy-disk"></i></button>'
