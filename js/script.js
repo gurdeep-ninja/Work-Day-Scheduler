@@ -31,27 +31,30 @@ schedule.forEach(function (element) {
     // column for text area
     let divText = $("<div>").addClass("col-8 p-0")
 
-    // access any tasks stored in localStorage item 'tasks'
-    let storedTasks = JSON.parse(localStorage.getItem('tasks'))
-
-    // Find out if an existing task details exist against the task being populated in the schedule
-    let existingTask = storedTasks.findIndex((task => task.hour === element.hour))
-
     // create a variable to store a textarea element html
     let textAreaContent = $("<textarea>").addClass("form-control").attr("rows", "3")
 
-    // append textarea form input
-    // If the task already has content in localStorage, populate the textAreaContent with existing content
-    if (existingTask != -1) {
-        //textAreaContent = (`<textarea class="form-control" rows="3">${}</textarea>`)
-        textAreaContent.text(storedTasks[existingTask].content)
+    // access any tasks stored in localStorage item 'tasks'
+    let storedTasks = JSON.parse(localStorage.getItem('tasks'))
 
+    if (storedTasks !== null) {
+
+        // Find out if an existing task details exist against the task being populated in the schedule
+        let existingTask = storedTasks.findIndex((task => task.hour === element.hour))
+
+
+        // append textarea form input
+        // If the task already has content in localStorage, populate the textAreaContent with existing content
+        if (existingTask != -1) {
+            //textAreaContent = (`<textarea class="form-control" rows="3">${}</textarea>`)
+            textAreaContent.text(storedTasks[existingTask].content)
+
+        }
     } else {
         // If the task does not already exist in localStorage, populate textAreaContent with empty value
         //textAreaContent = (`<textarea class="form-control" rows="3"></textarea>`)
         textAreaContent.text("")
     }
-
 
     // append the textarea to the divText column
     divText.append(textAreaContent)
@@ -112,10 +115,13 @@ $(".row").on("click", '.saveBtn', function () {
 
     //console.log(`task: ${task} text: ${taskText}`)
 
+    // format the new task as an object
     let taskToSave = {
         hour: task,
         content: taskText
     }
+
+    // Call the saveTask function and pass the taskToSave{} object
     saveTask(taskToSave)
 })
 

@@ -45,6 +45,7 @@ let schedule = [
         hour12:"5pm",
         content: ""
     },
+    /*
     {
         hour: 18,
         hour12:"6pm",
@@ -69,5 +70,6 @@ let schedule = [
         hour: 22,
         hour12:"10pm",
         content: ""
-    },    
+    },
+    */
 ]
