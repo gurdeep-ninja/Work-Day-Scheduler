@@ -1,15 +1,18 @@
+/* Apply styles to body */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
 }
 
+/* Apply styles to textarea element */
 textarea {
   background: transparent;
   border: none;
   resize: none;
 }
 
+/* Override some of the bootstrap jumbotron styles */
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -19,11 +22,13 @@ textarea {
   margin-bottom:10px
 }
 
+/* Override some of the bootstrap row styles */
 .row {
   white-space: pre-wrap;
   border-top: 1px solid white;
 }
 
+/* Styles for the saveBtn element */
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
@@ -34,28 +39,33 @@ textarea {
   height:100%;
 }
 
+/* Apply a hover effect to the saveBtn element */
 .saveBtn:hover {
   font-size: 30px;
   transition: all 0.3s ease-in-out;
 
 }
-
+/* Apply a mouse down effect to the saveBtn element */
 .saveBtn:active{
   color:black;
   transition: all 0.1s ease-in-out;
 }
 
+/* Set the background colour of the task-expired element */ 
 .task-expired{
   background-color:lightgray
-
+  
 }
+/* Set the background colour of the task-current element */ 
 .task-current{
   background-color:lightcoral
 }
+/* Set the background colour of the task-next element */ 
 .task-next{
   background-color:lightgreen
 }
 
+/* set style for the time column in the schedule */
 .time {
   border-top:1px dashed black;
   text-align: right;
@@ -63,19 +73,22 @@ textarea {
   text-transform: uppercase;
 }
 
-.container,.form-control {
+/* Override bootstrap font colour for .form-control & .container classes */
+.container, .form-control {
   color:black
   
 }
-
+/* Format the #save-message element */
 #save-message{
   text-align: center;
   height:30px;
 }
+/* Set the #save-message icon colour */
 #save-message i {
   color:green;
 }
 
+/* By default change the visibility to hidden for the p element within #save-message  */
 #save-message p {
   visibility: hidden;
 }
