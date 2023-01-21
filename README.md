@@ -12,12 +12,6 @@ A simple scheduler application that will allow the user to enter and save tasks 
 ## Screenshots
 ![Screenshot 1 of Code Quiz](./images/screenshot1.png)
 
-![Screenshot 2 of Code Quiz](./images/screenshot2.png)
-
-![Screenshot 3 of Code Quiz](./images/screenshot3.png)
-
-![Screenshot 4 of Code Quiz](./images/screenshot4.png)
-
 ## Installation & usage
 
 ### Installation
