@@ -35,9 +35,14 @@ textarea {
 }
 
 .saveBtn:hover {
-  font-size: 20px;
+  font-size: 30px;
   transition: all 0.3s ease-in-out;
-  color:black
+
+}
+
+.saveBtn:active{
+  color:black;
+  transition: all 0.1s ease-in-out;
 }
 
 .task-expired{

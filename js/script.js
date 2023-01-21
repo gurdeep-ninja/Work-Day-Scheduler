@@ -65,7 +65,7 @@ schedule.forEach(function (element) {
     let divSave = $("<div>").addClass("col-2 p-0")
 
     // Create save button
-    let saveButton = '<button class="saveBtn"><i class="fa-solid fa-floppy-disk"></i></button>'
+    let saveButton = '<button class="saveBtn fa-solid fa-floppy-disk"></button>'
 
     // Append the saveButton to divSave
     divSave.append(saveButton)
