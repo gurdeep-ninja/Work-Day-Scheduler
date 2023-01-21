@@ -1,5 +1,5 @@
 // Wrap script in jQuery document ready to ensure script only runs when the DOM is ready.
-$(document).ready(function{
+$(document).ready(function(){
     // Select the HTML element .container
     // this element is populated with bootstrap rows for each task
     let elSchedule = $("#schedule")
